@@ -1,0 +1,17 @@
+<h1 class="text-center my-4">Near Earth Objects</h1>
+
+<app-error
+  *ngIf="data.errors$ | async as err"
+  [msg]="err"
+  @toast></app-error>
+
+<app-loading *ngIf="data.loading"></app-loading>
+
+<div *ngIf="data.neoStore$ | async as neos" class="row mb-3">
+  <div
+    *ngFor="let neo of neos; trackBy: utils.trackByID"
+    class="col-sm-12 col-md-6 col-lg-4"
+    @list>
+    <app-neo [neo]="neo"></app-neo>
+  </div>
+</div>
